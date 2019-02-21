@@ -16,8 +16,12 @@ create table task
 	id int auto_increment primary key,
     name char(20) unique not null, 
     text_task text not null,
+    id_importance int not null,
+    id_user int,
     start_date datetime,
-    end_date datetime
+    end_date datetime,
+    constraint fk_task_importance foreign key (`id_importance`) REFERENCES  `importance`(id),
+    constraint fk_task_user foreign key (`id_user`) REFERENCES  `user`(id)
 );
 create table note
 (
