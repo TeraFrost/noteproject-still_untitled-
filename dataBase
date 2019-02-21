@@ -1,0 +1,36 @@
+create database notes_database;
+use notes_database;
+create table importance
+(
+	id int auto_increment primary key,
+    text_type char  unique not null
+);
+create table user
+(
+	id int auto_increment primary key,
+    name char(12) unique not null,
+    password char not null
+);
+create table task
+(
+	id int auto_increment primary key,
+    name char(20) unique not null, 
+    text_task text not null,
+    start_date datetime,
+    end_date datetime
+);
+create table note
+(
+	id int auto_increment primary key,
+	name char(20) unique not null, 
+    text_note text not null,
+    id_importance int not null,
+    id_user int,
+    id_task int,
+    constraint fk_note_importance foreign key (`id_importance`) REFERENCES  `importance`(id),
+    constraint fk_note_user foreign key (`id_user`) REFERENCES  `user`(id),
+    constraint fk_note_task foreign key (`id_task`) REFERENCES  `task`(id)
+    
+); 
+    
+ 
